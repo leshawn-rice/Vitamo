@@ -7,7 +7,11 @@ const { NotFoundError } = require("./expressError");
 
 const app = express();
 
+const authRoutes = require('./routes/auth');
+
 app.use(express.json());
+
+app.use('/', authRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {

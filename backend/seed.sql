@@ -3,12 +3,13 @@ CREATE TABLE Users (
   email TEXT NOT NULL UNIQUE,
   username TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
   confirmed BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE Foods (
   id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL NULL,
+  name TEXT NOT NULL,
   description TEXT NOT NULL,
   calories INT NOT NULL
 );
