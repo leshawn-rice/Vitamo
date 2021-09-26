@@ -67,10 +67,7 @@ class User {
 
     const user = await User.checkIfUserExists(true, { username, email });
 
-    try {
-      await bcrypt.compare(password, user.password);
-    }
-    catch (err) {
+    if (!(await bcrypt.compare(password, user.password))) {
       throw new BadRequestError('Invalid username/password');
     }
 
