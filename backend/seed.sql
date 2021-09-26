@@ -1,3 +1,8 @@
+DROP DATABASE IF EXISTS vitamo_db;
+CREATE DATABASE vitamo_db;
+
+\c vitamo_db
+
 CREATE TABLE Users (
   id SERIAL PRIMARY KEY,
   email TEXT NOT NULL UNIQUE,
