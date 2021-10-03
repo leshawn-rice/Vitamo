@@ -12,16 +12,55 @@ CREATE TABLE Users (
   confirmed BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE Foods (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  description TEXT NOT NULL,
-  calories INT NOT NULL
-);
-
--- Foods the user has saved/bookmarked
-CREATE TABLE Users_Foods (
+CREATE TABLE Grocery_Lists (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES Users,
-  food_id INT REFERENCES Foods
+  name TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE Grocery_List_Items (
+  id SERIAL PRIMARY KEY,
+  grocery_list_id INT REFERENCES Grocery_Lists,
+  info JSON NOT NULL
+);
+
+CREATE TABLE Meal_Plans (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES Users,
+  name TEXT NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT NOW(),
+  target_calories INT NOT NULL,
+  diet_type TEXT DEFAULT NULL
+);
+
+CREATE TABLE Restrictions (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL
+);
+
+CREATE TABLE Meal_Plans_Restrictions (
+  id SERIAL PRIMARY KEY,
+  meal_plan_id INT REFERENCES Meal_Plans,
+  restriction_id INT REFERENCES Restrictions
+);
+
+CREATE TABLE Recipe_Queries (
+  id SERIAL PRIMARY KEY,
+  query TEXT NOT NULL,
+  result TEXT NOT NULL
+);
+
+CREATE TABLE Ingredient_Queries (
+  id SERIAL PRIMARY KEY,
+  query TEXT NOT NULL,
+  result TEXT NOT NULL
+);
+
+CREATE TABLE Product_Queries (
+  id SERIAL PRIMARY KEY,
+  query TEXT NOT NULL,
+  result TEXT NOT NULL
 );
