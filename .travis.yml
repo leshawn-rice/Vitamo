@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - 15
+  
+script:
+  - cd frontend
+  - npm install
+  - npm run test
+  - npm run build
+  - cd ../backend
+  - npm install
+  - npm run test
+
+services:
+  - postgresql
