@@ -50,13 +50,13 @@ CREATE TABLE Meal_Plans_Restrictions (
 CREATE TABLE Recipe_Queries (
   id SERIAL PRIMARY KEY,
   query TEXT NOT NULL,
-  result TEXT NOT NULL
+  result JSON NOT NULL
 );
 
 CREATE TABLE Ingredient_Queries (
   id SERIAL PRIMARY KEY,
   query TEXT NOT NULL,
-  result TEXT NOT NULL
+  result JSON NOT NULL
 );
 
 CREATE TABLE Product_Queries (
