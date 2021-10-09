@@ -17,11 +17,16 @@ jobs:
         uses: actions/setup-node@v1
       
       - name: Install dependencies
+        working-directory: ./backend
         run: npm install
 
       - name: Test Backend
         working-directory: ./backend
         run: npm run test
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm install
 
       - name: Test Frontend
         working-directory: ./frontend
