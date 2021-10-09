@@ -1,6 +1,6 @@
 const db = require("../db");
 const { BadRequestError } = require("../expressError");
-const { isString, isObject } = require("../helpers/general");
+const { isString, isObject } = require("../helpers/utils");
 
 class Query {
   static async getResult(query = undefined, table = undefined) {
@@ -30,7 +30,7 @@ class Query {
 
     jsonResult = JSON.stringify(result);
 
-    result = await db.query(
+    let response = await db.query(
       `INSERT INTO $1
       (query, result)
       VALUES
@@ -39,7 +39,7 @@ class Query {
       [table, query, jsonResult]
     );
 
-    return result.rows[0];
+    return response.rows[0];
   }
 }
 
