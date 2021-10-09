@@ -2,7 +2,6 @@ name: Super-Linter
 on: push
 
 jobs:
-
   super-lint:
     name: Lint codebase
     runs-on: ubuntu-latest
@@ -13,8 +12,16 @@ jobs:
 
       - name: Run superlinter
         uses: github/superlinter@v3
-
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # run-tests:
+  #   name: Run tests on codebase
+  #   runs-on: ubuntu-latest
+  #   steps:
+
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+
+  #     - name: Run tests on backend
