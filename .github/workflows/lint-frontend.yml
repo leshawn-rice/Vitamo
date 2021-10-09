@@ -1,4 +1,4 @@
-name: Lint Code Base
+name: ESLint Frontend
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   super-linter:
-    name: Lint Code Base
+    name: ESLint Frontend
     runs-on: ubuntu-latest
 
     steps:
@@ -15,19 +15,11 @@ jobs:
 
       - name: Set up node 
         uses: actions/setup-node@v1
-      
-      - name: Install dependencies
-        working-directory: ./backend
-        run: npm install
-
-      - name: Test Backend
-        working-directory: ./backend
-        run: npx eslint .
 
       - name: Install dependencies
         working-directory: ./frontend
         run: npm install
 
-      - name: Test Frontend
+      - name: ESLint Frontend
         working-directory: ./frontend
         run: npx eslint .

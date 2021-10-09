@@ -1,4 +1,4 @@
-name: Test Code Base
+name: Test Backend
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-with-jest:
-    name: Test Code Base
+    name: Test Backend
     runs-on: ubuntu-latest
 
     steps:
@@ -22,12 +22,4 @@ jobs:
 
       - name: Test Backend
         working-directory: ./backend
-        run: npm run test
-
-      - name: Install dependencies
-        working-directory: ./frontend
-        run: npm install
-
-      - name: Test Frontend
-        working-directory: ./frontend
         run: npm run test

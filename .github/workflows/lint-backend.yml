@@ -1,0 +1,25 @@
+name: ESLint Backend
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  super-linter:
+    name: ESLint Backend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up node 
+        uses: actions/setup-node@v1
+      
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: ESLint Backend
+        working-directory: ./backend
+        run: npx eslint .
