@@ -1,0 +1,320 @@
+@font-face {
+  font-family: Consolas;
+  src: url('../fonts/Consolas.ttf');
+}
+
+@mixin theme($themePrimary: $primaryColor, $themeSecondary: $secondaryColor) {
+  background: $themePrimary;
+  color: $themeSecondary;
+}
+
+// Structural mixins
+
+@mixin row($height: 100%, $width: 100%) {
+  display: flex;
+  flex-direction: row;
+  height: $height;
+  width: $width;
+  flex-wrap: wrap;
+}
+
+@mixin column($height: 100%, $width: 100%) {
+  display: flex;
+  flex-direction: column;
+  height: $height;
+  width: $width;
+  flex: 1 1 0;
+}
+
+@mixin base-container($height: 100vh, $width: 100vw) {
+  height: $height;
+  width: $width;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+// Animation mixins
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin fade-in($duration: 2s) {
+  @include keyframes($name: fadein) {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  -webkit-animation: fadein $duration; /* Safari 4+ */
+  -moz-animation:    fadein $duration; /* Fx 5+ */
+  -o-animation:      fadein $duration; /* Opera 12+ */
+  animation:         fadein $duration; /* IE 10+, Fx 29+ */
+}
+
+@mixin fade-out($duration: 2s) {
+  @include keyframes($name: fadeout) {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  -webkit-animation: fadeout $duration; /* Safari 4+ */
+  -moz-animation:    fadeout $duration; /* Fx 5+ */
+  -o-animation:      fadeout $duration; /* Opera 12+ */
+  animation:         fadeout $duration; /* IE 10+, Fx 29+ */
+}
+
+@mixin slide-from-left($duration: 500ms) {
+  @include keyframes($name: slideFromLeft) {
+    from {
+      background-position: right;
+    }
+    to {
+      background-position: left;
+    }
+  }
+  -webkit-animation: slideFromLeft $duration; /* Safari 4+ */
+  -moz-animation:    slideFromLeft $duration; /* Fx 5+ */
+  -o-animation:      slideFromLeft $duration; /* Opera 12+ */
+  animation:         slideFromLeft $duration; /* IE 10+, Fx 29+ */
+}
+
+/* Tags */
+
+html {
+  @include base-container;
+  font-family: Consolas;
+  font-size: 10px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  @include base-container($height: inherit, $width: inherit);
+}
+
+/* IDs */
+
+#root {
+  @include base-container($height: inherit, $width: inherit);
+}
+
+/* Classes */
+
+// Structure & Alignment
+
+.row {
+  @include row($height: fit-content, $width: 100%);
+}
+
+.col {
+  @include column($height: inherit, $width: fit-content);
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+// Theme & Colors
+
+// Foreground
+
+.primary {
+  color: $primaryColor;
+}
+
+.dark {
+  color: $darkColor;
+}
+
+.light {
+  color: $secondaryColor;
+}
+
+.error {
+  color: $errorColor
+}
+
+.warning {
+  color: $warningColor
+}
+
+.success {
+  color: $successColor
+}
+
+// Background
+
+.bg-primary {
+  @include theme;
+}
+
+.bg-dark {
+  @include theme($themePrimary: $darkColor, $themeSecondary: $secondaryColor);
+}
+
+.bg-light {
+  @include theme($themePrimary: $secondaryColor, $themeSecondary: $darkColor);
+}
+
+.bg-error {
+  background-color: $errorColor
+}
+
+.bg-warning {
+  background-color: $warningColor
+}
+
+.bg-success {
+  background-color: $successColor
+}
+
+// Text & Links
+
+// Headers
+
+.header-1 {
+  font-size: 5rem;
+  font-weight: 200;
+}
+
+.header-2 {
+  font-size: 4rem;
+  font-weight: 300;
+}
+
+.header-3 {
+  font-size: 3.5rem;
+  font-weight: 400;
+}
+
+.header-4 {
+  font-size: 2.75rem;
+  font-weight: 500;
+}
+
+.header-5 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+// Paragraphs
+
+.text {
+  font-size: 1.5rem;
+}
+
+.text-large {
+  font-size: 2rem;
+}
+
+.text-small {
+  font-size: 1.25rem;
+}
+
+.text-xl {
+  font-size: 2.5rem;
+}
+
+// Captions
+
+.caption {
+  font-size: 1rem;
+  color: $darkSecondary;
+}
+
+.caption.dark {
+  color: $secondaryColor;
+}
+
+// Links
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: $primaryColor;
+}
+
+// Images
+
+
+// Animations
+
+// Fade In
+
+.fadeIn {
+  @include fade-in;
+}
+
+.fadeIn-1 {
+  @include fade-in($duration: 1s);
+}
+
+.fadeIn-2 {
+  @include fade-in($duration: 2s);
+}
+
+.fadeIn-3 {
+  @include fade-in($duration: 3s);
+}
+
+.fadeIn-4 {
+  @include fade-in($duration: 4s);
+}
+
+.fadeIn-5 {
+  @include fade-in($duration: 5s);
+}
+
+// Fade Out
+
+.fadeOut {
+  @include fade-out;
+}
+
+.fadeOut-1 {
+  @include fade-out($duration: 1s);
+}
+
+.fadeOut-2 {
+  @include fade-out($duration: 2s);
+}
+
+.fadeOut-3 {
+  @include fade-out($duration: 3s);
+}
+
+.fadeOut-4 {
+  @include fade-out($duration: 4s);
+}
+
+.fadeOut-5 {
+  @include fade-out($duration: 5s);
+}
