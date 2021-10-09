@@ -24,10 +24,10 @@ jobs:
         working-directory: ./backend
         run: npx eslint .
 
-      # - name: Install dependencies
-      #   working-directory: ./frontend
-      #   run: npm install
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm install
 
-      # - name: Test Frontend
-      #   working-directory: ./frontend
-      #   run: npx eslint .
+      - name: Test Frontend
+        working-directory: ./frontend
+        run: npx eslint .
