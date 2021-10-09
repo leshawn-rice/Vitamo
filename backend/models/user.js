@@ -1,9 +1,9 @@
-// Use typescript?
+'use strict';
 
 const { BadRequestError, InternalServerError } = require('../expressError');
 const bcrypt = require('bcrypt');
 const db = require('../db');
-const { BCRYPT_WORK_FACTOR } = require("../config");
+const { BCRYPT_WORK_FACTOR } = require('../config');
 
 class User {
 

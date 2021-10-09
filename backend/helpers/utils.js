@@ -1,3 +1,5 @@
+'use strict';
+
 function isString(str) {
   return (typeof (str) === 'string');
 }
@@ -24,4 +26,4 @@ module.exports = {
   isBoolean,
   isObject,
   isArray
-}
+};

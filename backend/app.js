@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
 // External Dependencies
-const express = require("express");
+const express = require('express');
 // Internal Dependencies
-const { NotFoundError } = require("./expressError");
+const { NotFoundError } = require('./expressError');
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(function (req, res, next) {
 });
 
 /** Generic error handler; anything unhandled goes here. */
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   if (process.env.NODE_ENV !== 'test') console.error(err.stack);
   const status = err.status || 500;
   const message = err.message;

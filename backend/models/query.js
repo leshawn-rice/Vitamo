@@ -1,6 +1,8 @@
-const db = require("../db");
-const { BadRequestError } = require("../expressError");
-const { isString, isObject } = require("../helpers/utils");
+'use strict';
+
+const db = require('../db');
+const { BadRequestError } = require('../expressError');
+const { isString, isObject } = require('../helpers/utils');
 
 class Query {
   static async getResult(query = undefined, table = undefined) {
@@ -8,13 +10,13 @@ class Query {
 
     if (!isString(query) || !isString(table)) throw new BadRequestError('Query/Table must be of type str');
 
-    results = await db.query(
+    let results = await db.query(
       `SELECT query, result from $1
       WHERE query ILIKE $2`,
       [table, query]
     );
 
-    if (!results.rows.length) { };
+    if (!results.rows.length) return {};
 
     return results.rows[0];
   }
@@ -28,7 +30,7 @@ class Query {
 
     if (currentResult.result) throw new BadRequestError('Query Exists');
 
-    jsonResult = JSON.stringify(result);
+    let jsonResult = JSON.stringify(result);
 
     let response = await db.query(
       `INSERT INTO $1
@@ -77,4 +79,4 @@ module.exports = {
   RecipeQuery,
   ProductQuery,
   IngredientQuery
-}
+};

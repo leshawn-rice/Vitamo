@@ -1,5 +1,7 @@
-const { ExpressError } = require("../expressError");
-const { RecipeQuery, ProductQuery, IngredientQuery } = require("../models/query");
+'use strict';
+
+const { ExpressError } = require('../expressError');
+const { RecipeQuery, ProductQuery, IngredientQuery } = require('../models/query');
 
 async function queryRecipe(query) {
   try {
@@ -56,4 +58,4 @@ module.exports = {
   queryRecipe,
   queryProduct,
   queryIngredient
-}
+};
