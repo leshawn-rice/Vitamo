@@ -1,25 +1,25 @@
-name: Test Frontend
+name: ESLint Frontend
 
 on:
   push:
     branches: [main]
 
 jobs:
-  test-with-jest:
-    name: Test Frontend
+  super-linter:
+    name: ESLint Frontend
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-  
+
       - name: Set up node 
         uses: actions/setup-node@v1
 
       - name: Install dependencies
-        working-directory: ./frontend
+        working-directory: ./app
         run: npm install
 
-      - name: Test Frontend
-        working-directory: ./frontend
-        run: npm run test
+      - name: ESLint Frontend
+        working-directory: ./app
+        run: npx eslint .
