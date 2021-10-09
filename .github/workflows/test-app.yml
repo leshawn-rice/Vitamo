@@ -1,4 +1,4 @@
-name: Test Frontend
+name: Test App
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-with-jest:
-    name: Test Frontend
+    name: Test App
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +20,6 @@ jobs:
         working-directory: ./app
         run: npm install
 
-      - name: Test Frontend
+      - name: Run ESLint
         working-directory: ./app
         run: npm run test
